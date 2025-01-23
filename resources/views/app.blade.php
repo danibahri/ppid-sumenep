@@ -7,14 +7,13 @@
 
 <body>
     <div id="app">
-        {{-- @include('partials.navbar') --}}
+        @include('partials.navbar')
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-
-    {{-- @include('partials.footer')
-    @include('partials.scripts') --}}
+    @include('partials.footer')
+    @include('partials.scripts')
 </body>
 
 </html>
