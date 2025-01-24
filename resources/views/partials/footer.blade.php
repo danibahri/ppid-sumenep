@@ -93,7 +93,7 @@
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-white sm:text-center">Hak Cipta © 2025 <a href="https://flowbite.com/"
+            <span class="text-sm text-white sm:text-center">Hak Cipta © 2025 <a href="javascript:void(0)"
                     class="hover:underline">Kementerian Komunikasi dan Digital</a>. All Rights Reserved.
             </span>
         </div>

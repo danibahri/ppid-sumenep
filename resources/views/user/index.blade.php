@@ -2,7 +2,7 @@
 @section('title', 'PPID Kabupaten Sumenep')
 @section('content')
     {{-- header --}}
-    <section class="bg-red-700" style="height: 75vh">
+    <section class="bg-red-700 mt-10 md:pt-0" style="height: 75vh">
         <div class="flex flex-col h-full w-full md:flex-row md:items-center md:justify-center">
             <div class="mx-10 h-full flex items-center justify-center order-1 md:order-0">
                 <img src="{{ asset('logo/header2.png') }}" class="h-full md:h-screen" alt="kantor_pemda"

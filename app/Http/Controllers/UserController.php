@@ -11,6 +11,16 @@ class UserController extends Controller
         return view('user.index');
     }
 
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
     public function visi_misi()
     {
         return view('user.pages.visi-misi');

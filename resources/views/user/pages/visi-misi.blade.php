@@ -2,9 +2,9 @@
 @section('title', 'PPID Kabupaten Sumenep')
 @section('content')
 
-    <div class="flex justify-center mt-20">
-        <a href="#"
-            class="flex flex-col items-center  bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl md:flex-row md:max-w-4xl w-full hover:bg-gray-100">
+    <div class="flex justify-center my-40">
+        <a href="javascript:void(0)"
+            class="flex flex-col items-center  bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl md:flex-row md:max-w-4xl w-full">
             <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-80 md:rounded-none md:rounded-l-lg"
                 src="{{ asset('logo/logo_ppid.png') }}" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal w-full">
@@ -16,7 +16,7 @@
 
 
                 <h2 class="mb-2 text-lg font-semibold text-gray-900">MISI</h2>
-                <ul class="space-y-1 text-gray-700 list-disc list-inside">
+                <ul class="space-y-1 text-gray-700 list-decimal">
                     <li>
                         Membangun Kualitas Sumber Daya Manusia (SDM) Berdaya Saing Bidang Pendidikan, Kesehatan Dan Ketenaga
                         Kerjaan.
