@@ -43,19 +43,24 @@
                         class="absolute left-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
                         <ul class="py-2 text-sm text-gray-700">
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Visi Misi</a>
+                                <a href="{{ route('visi-misi') }}" class="block px-4 py-2 hover:bg-gray-100">Visi
+                                    Misi</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Tentang PPID</a>
+                                <a href="{{ route('tentang-ppid') }}" class="block px-4 py-2 hover:bg-gray-100">Tentang
+                                    PPID</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dasar Hukum</a>
+                                <a href="{{ route('dasar-hukum') }}" class="block px-4 py-2 hover:bg-gray-100">Dasar
+                                    Hukum</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Tugas Dan Fungsi</a>
+                                <a href="{{ route('tugas-dan-fungsi-ppid-sumenep') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Tugas Dan Fungsi</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Stuktural Organisasi</a>
+                                <a href="{{ route('struktural-organisasi') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Stuktural Organisasi</a>
                             </li>
                         </ul>
                     </div>

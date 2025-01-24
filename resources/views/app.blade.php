@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="bg-gray-100 h-screen antialiased leading-none">
+<body class="bg-gray-100 h-screen antialiased leading-none scroll-smooth">
     <div id="app">
         @include('partials.navbar')
         <main class="py-4">

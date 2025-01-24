@@ -1,28 +1,12 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('user.index');
-});
-
-Route::get('/visi-misi', function () {
-    return view('user.pages.visi-misi');
-});
-
-Route::get('/tentang-ppid', function () {
-    return view('user.pages.tentang-ppid');
-});
-
-Route::get('/dasar-hukum', function () {
-    return view('user.pages.dasar-hukum');
-});
-
-Route::get('/tugas-dan-fungsi-ppid-sumenep', function () {
-    return view('user.pages.tugas-dan-fungsi-ppid-sumenep');
-});
-
-
-Route::get('/stuktural-organisasi', function () {
-    return view('user.pages.stuktural-organisasi');
-});
+Route::get('/', [UserController::class, 'index']);
+Route::get('/visi-misi', [UserController::class, 'visi_misi'])->name('visi-misi');
+Route::get('/tentang-ppid', [UserController::class, 'tentang_ppid'])->name('tentang-ppid');
+Route::get('/dasar-hukum', [UserController::class, 'dasar_hukum'])->name('dasar-hukum');
+Route::get('/tugas-dan-fungsi-ppid-sumenep', [UserController::class, 'tugas_dan_fungsi_ppid_sumenep'])->name('tugas-dan-fungsi-ppid-sumenep');
+Route::get('/struktural-organisasi', [UserController::class, 'struktural_organisasi'])->name('struktural-organisasi');
