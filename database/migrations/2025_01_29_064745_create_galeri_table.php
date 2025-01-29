@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('galeri', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_active')->default(true);
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->string('post_by');
             $table->string('path_img');
             $table->timestamps();

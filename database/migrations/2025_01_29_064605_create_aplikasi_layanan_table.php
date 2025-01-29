@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama_aplikasi');
             $table->string('post_by');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->text('description');
-            $table->string('path');
+            $table->text('description')->nullable();
+            $table->string('path_dokumen')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

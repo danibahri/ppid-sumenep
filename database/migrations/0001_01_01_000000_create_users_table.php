@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('perangkat_daerah');
+            $table->string('perangkat_daerah')->nullable();
             $table->boolean('is_active')->default(true);
             $table->enum('role', ['admin', 'user', 'pembantu']);
-            $table->string('operator_ppid');
+            $table->string('operator_ppid')->nullable();
             $table->string('no_whatsapp')->nullable();
             $table->timestamps();
         });

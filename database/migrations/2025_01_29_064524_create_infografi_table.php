@@ -18,10 +18,11 @@ return new class extends Migration
             $table->foreignId('detail_jenis_informasi_id')->constrained('detail_jenis_informasi')->onDelete('cascade');
             $table->string('nama_infografis');
             $table->string('post_by');
-            $table->string('icon');
+            $table->string('icon')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->string('nama_dokumen');
-            $table->string('path_dokumen');
+            $table->string('nama_dokumen')->nullable();
+            $table->string('path_dokumen')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
