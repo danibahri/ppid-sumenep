@@ -7,7 +7,7 @@
         <div class="max-w-screen-sm mx-auto">
             <div class="flex justify-center h-16 md:h-28 p-1">
                 <img src="{{ asset('logo/logo_ppid.png') }}" alt="logo_ppid" class="h-full"><span
-                    class="border-l-4 md:border-l-8 border-gray-800"></span>
+                    class="border-l-4 md:border-l-8-2 border-black"></span>
                 <h1 class="flex flex-col justify-center w-fit md:text-3xl font-bold ml-4">
                     <span>Sistem Informasi dan</span>
                     <span>Dokumentasi Publik</span>
@@ -15,7 +15,7 @@
             </div>
             <div class="w-full bg-red-700 mt-10 p-4 px-20 h-96 rounded-sm">
                 <h1 class="text-2xl font-bold text-center text-white">MASUK</h1>
-                <form action="POST">
+                <form method="POST">
                     @csrf
                     <div class="flex flex-col mt-4">
                         <label for="username" class="text-white mb-1">Username</label>
@@ -30,7 +30,7 @@
                             class="w-full py-3 bg-red-400 border-2 border-red-400 text-white rounded hover:bg-red-500">Login</button>
                     </div>
                     <p class="text-white mt-10 text-center"> Belum punya akun?
-                        <a href="{{ route('register') }}" class="text-white text-center mt-4 hover:underline">
+                        <a href="{{ route('register') }}" class="text-white text-center mt-4 underline hover:text-red-200">
                             Hubungi Admin</a>
                     </p>
                 </form>

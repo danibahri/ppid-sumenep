@@ -7,7 +7,7 @@
         <div class="max-w-screen-sm mx-auto">
             <div class="flex justify-center h-16 md:h-28 p-1">
                 <img src="{{ asset('logo/logo_ppid.png') }}" alt="logo_ppid" class="h-full"><span
-                    class="border-l-4 md:border-l-8-2 border-red-800"></span>
+                    class="border-l-4 md:border-l-8-2 border-black"></span>
                 <h1 class="flex flex-col justify-center w-fit md:text-3xl font-bold ml-4">
                     <span>Sistem Informasi dan</span>
                     <span>Dokumentasi Publik</span>
@@ -37,7 +37,7 @@
                     <div class="flex flex-col mt-4">
                         <label for="file" class="text-white mb-1">Upload File</label>
                         <input type="file" name="file" id="file"
-                            class="p-2 border border-white rounded bg-red-700 text-white">
+                            class="p-2 border border-white rounded bg-red-700 text-white cursor-pointer">
                     </div>
                     <div class="flex justify-center mt-4">
                         <button type="submit"
@@ -48,3 +48,6 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+@endpush
