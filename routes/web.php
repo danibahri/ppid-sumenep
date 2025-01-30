@@ -21,6 +21,10 @@ Route::post('/register', [AuthController::class, 'registerSubmit'])->name('regis
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// servant
+Route::get('/aplikasi-layanan-publik', [UserController::class, 'aplikasi_layanan_public'])->name('aplikasi-layanan-public');
+
+
 // check auth
 // Route::middleware(CheckAuth::class)->group(function () {
 // });

@@ -44,6 +44,11 @@ class UserController extends Controller
         return view('user.pages.tugas-dan-fungsi-ppid-sumenep');
     }
 
+    public function aplikasi_layanan_public()
+    {
+        return view('servant.aplikasi-layanan-publik');
+    }
+
     public function struktural_organisasi()
     {
         return view('user.pages.stuktural-organisasi');
