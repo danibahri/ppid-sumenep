@@ -12,7 +12,7 @@ class CheckAuth
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        if (!Auth::check() && ($request->role == 'admin' || $request->role == 'admin')) {
             return redirect()->route('home'); 
         }
         return $next($request);

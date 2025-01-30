@@ -35,7 +35,7 @@
                         <input type="email" name="email" id="email" class="p-2 border-2 border-red-800 rounded">
                     </div>
                     <div class="flex flex-col mt-4">
-                        <label for="file" class="text-white mb-1">Upload File</label>
+                        <label for="file" class="text-white mb-1">Upload Surat Tugas</label>
                         <input type="file" name="file" id="file"
                             class="p-2 border border-white rounded bg-red-700 text-white cursor-pointer">
                     </div>
@@ -43,11 +43,12 @@
                         <button type="submit"
                             class="w-full py-3 bg-red-400 border-2 border-red-400 text-white rounded font-bold md:text-xl hover:bg-red-500">Daftar</button>
                     </div>
+                    <p class="text-white mt-10 text-center"> Sudah punya akun?
+                        <a href="{{ route('login') }}" class="text-white text-center mt-4 underline hover:text-red-200">
+                            Login Sekarang</a>
+                    </p>
                 </form>
             </div>
         </div>
     </div>
 @endsection
-
-@push('scripts')
-@endpush

@@ -15,6 +15,14 @@
 {{-- flowbite vite --}}
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+{{-- aos --}}
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+{{-- custom css --}}
+@stack('styles')
+
+{{-- jquery --}}
+
 <style>
     /* From Uiverse.io by Donewenfu */
     .loader {
@@ -24,7 +32,7 @@
         left: 0;
         right: 0;
         z-index: 9999;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.94);
     }
 
     .jimu-primary-loading:before,
