@@ -14,7 +14,7 @@ class UserController extends Controller
     }
 
     public function login()
-    {   
+    {
         return view('auth.login');
     }
 
@@ -47,5 +47,13 @@ class UserController extends Controller
     {
         return view('user.pages.stuktural-organisasi');
     }
-    
+
+    public function informasi_public()
+    {
+        return view('servant.informasi_public');
+    }
+    public function informasi_grafis()
+    {
+        return view('servant.informasi_grafis');
+    }
 }
