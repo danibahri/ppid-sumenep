@@ -11,6 +11,9 @@ Route::get('/tentang-ppid', [UserController::class, 'tentang_ppid'])->name('tent
 Route::get('/dasar-hukum', [UserController::class, 'dasar_hukum'])->name('dasar-hukum');
 Route::get('/tugas-dan-fungsi-ppid-sumenep', [UserController::class, 'tugas_dan_fungsi_ppid_sumenep'])->name('tugas-dan-fungsi-ppid-sumenep');
 Route::get('/struktural-organisasi', [UserController::class, 'struktural_organisasi'])->name('struktural-organisasi');
+Route::get('/informasi-public', [UserController::class, 'informasi_public'])->name('informasi-public');
+Route::get('/informasi-grafis', [UserController::class, 'informasi_grafis'])->name('informasi-grafis');
+
 
 // Auth
 Route::get('/login', [UserController::class, 'login'])->name('login');
