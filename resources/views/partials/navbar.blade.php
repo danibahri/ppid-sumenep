@@ -20,7 +20,7 @@
         <!-- Navbar Links -->
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul
-                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">
                 <li>
                     <a href="{{ route('home') }}"
                         class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Beranda</a>
@@ -86,14 +86,35 @@
                         class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">PPID
                         Desa</a>
                 </li>
-                <li>
+                @if (empty(Auth::check()))
+                    <li>
+                        <a href="{{ route('login') }}"
+                            class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Login</a>
+                        <span>/</span>
+                        <a href="{{ route('register') }}"
+                            class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Register</a>
+                    </li>
+                @else
+                    <li class="relative group">
+                        <button class="flex items-center space-x-1 text-gray-700 hover:text-red-700 focus:outline-none">
+                            <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute right-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
+                            <div class="py-2 text-sm text-gray-700">
+                                <a href="" class="block px-4 py-2 hover:bg-gray-100">Profil</a>
+                                <a href="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-100">Logout</a>
 
-                    <a href="{{ route('login') }}"
-                        class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Login</a>
-                    <span>/</span>
-                    <a href="{{ route('register') }}"
-                        class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Register</a>
-                </li>
+                            </div>
+                        </div>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

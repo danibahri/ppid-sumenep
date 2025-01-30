@@ -18,15 +18,21 @@
                 <form method="POST" action="{{ route('login.submit') }}">
                     @csrf
                     <div class="flex flex-col mt-4">
-                        <label for="username" class="text-white mb-1">Username</label>
-                        <input type="text" name="username" id="username" class="p-2 border border-gray-800 rounded"
-                            placeholder="Masukkan username">
+                        <label for="name" class="text-white mb-1">Username</label>
+                        <input type="text" name="name" id="name" class="p-2 border border-gray-800 rounded"
+                            placeholder="Masukkan name">
                     </div>
+                    @error('name')
+                        <li class="text-white text-sm">{{ $message }}</li>
+                    @enderror
                     <div class="flex flex-col mt-4">
                         <label for="password" class="text-white mb-1">Password</label>
                         <input type="password" name="password" id="password" class="p-2 border border-gray-800 rounded"
                             placeholder="Masukkan password">
                     </div>
+                    @error('password')
+                        <li class="text-white text-sm">{{ $message }}</li>
+                    @enderror
                     <div class="flex justify-center mt-4">
                         <button type="submit"
                             class="w-full py-3 bg-red-400 border-2 border-red-400 text-white rounded hover:bg-red-500">Login</button>

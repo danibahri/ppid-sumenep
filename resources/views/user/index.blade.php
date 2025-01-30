@@ -22,7 +22,7 @@
             <div class="p-4">
                 <h1 class="font-bold text-2xl md:text-4xl my-10">Layanan Publik</h1>
                 <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8">
-                    <a href="#"
+                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
                         class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-chat-right-text w-24 h-24 mb-2"
                             viewBox="0 0 16 16">
@@ -33,7 +33,7 @@
                         </svg>
                         <span class="text-center font-bold text-sm md:text-xl truncate">Lapor</span>
                     </a>
-                    <a href="#"
+                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
                         class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-hospital w-24 h-24 mb-2"
                             viewBox="0 0 16 16">
@@ -44,7 +44,7 @@
                         </svg>
                         <span class="text-center font-bold text-sm md:text-xl truncate">Klinik Hoax</span>
                     </a>
-                    <a href="#"
+                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
                         class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-people w-24 h-24 mb-2"
                             viewBox="0 0 16 16">
@@ -53,7 +53,7 @@
                         </svg>
                         <span class="text-center font-bold text-sm md:text-xl truncate">Survey Kepuasan</span>
                     </a>
-                    <a href="#"
+                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
                         class="flex flex-col justify-center items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-lightning w-24 h-24"
                             viewBox="0 0 16 16">
@@ -139,8 +139,8 @@
                     <a href="javascript:void(0)"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
                         Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
@@ -312,36 +312,72 @@
 
 @push('scripts')
     <script>
-        const scrollableElement = document.getElementById('scrollable');
-        let isDragging = false;
+        // Enhanced Smooth Scroll dengan Momentum
+        const scrollable = document.getElementById('scrollable');
+        let isDown = false;
         let startX;
         let scrollLeft;
+        let momentum;
+        let lastTime = 0;
 
-        scrollableElement.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - scrollableElement.offsetLeft;
-            scrollLeft = scrollableElement.scrollLeft;
-            scrollableElement.style.cursor = 'grabbing';
+        scrollable.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - scrollable.offsetLeft;
+            scrollLeft = scrollable.scrollLeft;
+            scrollable.style.cursor = 'grabbing';
+            cancelMomentum();
         });
 
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const x = e.pageX - scrollableElement.offsetLeft;
-            const scroll = x - startX;
-            scrollableElement.scrollLeft = scrollLeft - scroll; // Menggeser konten ke kiri/kanan dengan lebih halus
+        scrollable.addEventListener('mouseleave', () => {
+            isDown = false;
+            scrollable.style.cursor = 'grab';
         });
 
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            scrollableElement.style.cursor = 'grab';
+        scrollable.addEventListener('mouseup', () => {
+            isDown = false;
+            scrollable.style.cursor = 'grab';
+            startMomentum();
         });
 
-        // Optional: Untuk memberikan tampilan kursor yang lebih sesuai saat menggeser
-        scrollableElement.addEventListener('mouseleave', () => {
-            if (isDragging) {
-                isDragging = false;
-                scrollableElement.style.cursor = 'grab';
+        scrollable.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollable.offsetLeft;
+            const walk = (x - startX) * 2;
+            scrollable.scrollLeft = scrollLeft - walk;
+        });
+
+        // Momentum Effect
+        function startMomentum() {
+            momentum = requestAnimationFrame(momentumLoop);
+        }
+
+        function cancelMomentum() {
+            cancelAnimationFrame(momentum);
+        }
+
+        function momentumLoop(timestamp) {
+            const elapsed = timestamp - lastTime;
+            lastTime = timestamp;
+
+            if (Math.abs(scrollable.scrollLeft - scrollLeft) > 0.1) {
+                scrollable.scrollLeft += (scrollLeft - scrollable.scrollLeft) * 0.2;
+                momentum = requestAnimationFrame(momentumLoop);
             }
+        }
+
+        // Touch Support
+        scrollable.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - scrollable.offsetLeft;
+            scrollLeft = scrollable.scrollLeft;
+            cancelMomentum();
+        });
+
+        scrollable.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const x = e.touches[0].pageX - scrollable.offsetLeft;
+            const walk = (x - startX) * 2;
+            scrollable.scrollLeft = scrollLeft - walk;
         });
     </script>
 @endpush

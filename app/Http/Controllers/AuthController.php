@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AuthController extends Controller
 {
@@ -23,17 +25,19 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            Alert::success('Success', 'Login Berhasil');
+            return redirect()->route('home');
         }
-        return back()->withErrors([
-            'user' => 'Pengguna tidak ditemukan',
-        ]);
+
+        Alert::error('Error', 'Login Gagal');
+        return back();
     }
 
     public function logout()
     {
         Auth::logout();
         session()->flush();
+        Alert::success('Success', 'Logout Berhasil');
         return redirect()->route('home');
     }
 }
