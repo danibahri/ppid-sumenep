@@ -8,18 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Panel;
 use Filament\Models\Contracts\FilamentUser;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements FilamentUser
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    use HasFactory, Notifiable, SoftDeletes; 
     protected $fillable = [
         'name',
         'email',
@@ -47,4 +40,9 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Menggunakan SoftDeletes untuk menambahkan fitur soft delete.
+     */
+    protected $dates = ['deleted_at']; // Pastikan kolom deleted_at di cast sebagai tanggal
 }

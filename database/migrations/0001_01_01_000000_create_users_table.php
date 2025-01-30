@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'user', 'pembantu']);
             $table->string('operator_ppid')->nullable();
             $table->string('no_whatsapp')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
         });
 

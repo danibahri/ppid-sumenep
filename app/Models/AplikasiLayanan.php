@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AplikasiLayanan extends Model
 {
+
+    protected $table = 'aplikasi_layanan';
     protected $fillable = [
         'nama_aplikasi',
         'post_by',

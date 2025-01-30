@@ -20,3 +20,14 @@
         });
     };
 </script>
+<script>
+    window.onload = function() {
+        // Setelah halaman selesai dimuat, sembunyikan loader dan tampilkan konten
+        const loader = document.getElementById('loader');
+        const content = document.getElementById('content');
+
+        // Menyembunyikan loader dan menampilkan konten
+        loader.style.display = 'none';
+        content.classList.remove('hidden');
+    };
+</script>

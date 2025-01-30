@@ -15,15 +15,17 @@
             </div>
             <div class="w-full bg-red-700 mt-10 p-4 px-20 h-96 rounded-sm">
                 <h1 class="text-2xl font-bold text-center text-white">MASUK</h1>
-                <form method="POST">
+                <form method="POST" action="{{ route('login.submit') }}">
                     @csrf
                     <div class="flex flex-col mt-4">
                         <label for="username" class="text-white mb-1">Username</label>
-                        <input type="text" name="username" id="username" class="p-2 border border-gray-800 rounded">
+                        <input type="text" name="username" id="username" class="p-2 border border-gray-800 rounded"
+                            placeholder="Masukkan username">
                     </div>
                     <div class="flex flex-col mt-4">
                         <label for="password" class="text-white mb-1">Password</label>
-                        <input type="password" name="password" id="password" class="p-2 border border-gray-800 rounded">
+                        <input type="password" name="password" id="password" class="p-2 border border-gray-800 rounded"
+                            placeholder="Masukkan password">
                     </div>
                     <div class="flex justify-center mt-4">
                         <button type="submit"

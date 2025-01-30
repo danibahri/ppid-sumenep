@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class JenisInformasi extends Model
 {
+
+    protected $table = 'jenis_informasi';
     protected $fillable = ['jenis_informasi'];
 
     public function informasiPubliks()

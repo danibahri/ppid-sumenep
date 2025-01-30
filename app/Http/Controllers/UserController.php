@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+
 class UserController extends Controller
 {
     public function index()
@@ -12,7 +14,8 @@ class UserController extends Controller
     }
 
     public function login()
-    {
+    {   
+        toast('Profil berhasil di update', 'success')->autoClose(5000);
         return view('auth.login');
     }
 

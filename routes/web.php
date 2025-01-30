@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckAuth;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/visi-misi', [UserController::class, 'visi_misi'])->name('visi-misi');
@@ -13,4 +14,13 @@ Route::get('/struktural-organisasi', [UserController::class, 'struktural_organis
 
 // Auth
 Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginSubmit'])->name('login.submit');
 Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerSubmit'])->name('register.submit');
+
+// Logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// check auth
+// Route::middleware(CheckAuth::class)->group(function () {
+// });
