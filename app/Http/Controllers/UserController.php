@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Models\DetailJenisInformasi;
+use App\Models\Infografis;
+use App\Models\InformasiPublik;
+use App\Models\KlasifikasiInformasi;
+use App\Models\JenisInformasi;
+use App\Models\AplikasiLayanan;
 
 
 class UserController extends Controller
@@ -48,12 +52,47 @@ class UserController extends Controller
         return view('user.pages.stuktural-organisasi');
     }
 
-    public function informasi_public()
+    public function maklumat_pelayanan()
     {
-        return view('servant.informasi_public');
+        return view('user.pages.maklumat-pelayanan');
     }
-    public function informasi_grafis()
+
+    public function prosedur_permintaan_informasi_ppid_sumenep()
     {
-        return view('servant.informasi_grafis');
+        return view('user.pages.prosedur-permintaan-informasi-ppid-sumenep');
+    }
+
+    public function prosedur_pengajuan_keberatan_ppid_sumenep()
+    {
+        return view('user.pages.prosedur-pengajuan-keberatan-ppid-sumenep');
+    }
+
+    public function prosedur_sengketa_informasi_ppid_sumenep()
+    {
+        return view('user.pages.prosedur-sengketa-informasi-ppid-sumenep');
+    }
+
+    public function informasi_publik()
+    {   
+        $klasifikasi_informasi = KlasifikasiInformasi::all();
+        $jenis_informasi = JenisInformasi::all();
+        $detail_jenis_informasi = DetailJenisInformasi::all();
+        $informasi_publik = InformasiPublik::all();
+        return view('servant.informasi_public', compact('klasifikasi_informasi', 'jenis_informasi', 'detail_jenis_informasi', 'informasi_publik'));
+    }
+    
+    public function infografis()
+    {
+        $klasifikasi_informasi = KlasifikasiInformasi::all();
+        $jenis_informasi = JenisInformasi::all();
+        $detail_jenis_informasi = DetailJenisInformasi::all();
+        $infografis = Infografis::all();
+        return view('servant.infografis', compact('klasifikasi_informasi', 'jenis_informasi', 'detail_jenis_informasi', 'infografis'));
+    }
+
+    public function aplikasi_layanan_publik()
+    {   
+        $aplikasi_layanan_publik = AplikasiLayanan::all();
+        return view('servant.aplikasi-layanan-publik', compact('aplikasi_layanan_publik'));
     }
 }

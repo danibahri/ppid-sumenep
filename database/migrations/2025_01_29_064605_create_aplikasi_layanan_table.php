@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_aplikasi');
             $table->string('post_by');
             $table->string('icon')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->text('description')->nullable();
             $table->string('path_dokumen')->nullable();
             $table->string('url')->nullable();

@@ -2,63 +2,357 @@
 @section('title', 'PPID Kabupaten Sumenep')
 @section('content')
     {{-- header --}}
-    <section class="bg-red-700 mt-10 md:pt-0" style="height: 75vh">
+    <section class="relative bg-red-700 mt-10 md:pt-0" style="height: 75vh">
         <div class="flex flex-col h-full w-full md:flex-row md:items-center md:justify-center">
             <div class="mx-10 h-full flex items-center justify-center order-1 md:order-0">
-                <img src="{{ asset('logo/header2.png') }}" class="h-full md:h-screen" alt="kantor_pemda"
+                <img src="{{ asset('logo/header2.png') }}" class="h-full md:h-screen z-20" alt="kantor_pemda"
                     style="filter: drop-shadow(0.5rem 0.5rem 0rem black);" />
             </div>
             <div class="flex flex-col items-center justify-center h-full order-0 md:w-1/2 md:order-1">
-                <h1 class="text-white font-bold text-3xl p-5 my-5 text-center md:text-left md:text-6xl">Selamat Datang di
+                <h1 class="text-white font-bold text-3xl p-5 my-5 text-center md:text-left md:text-6xl z-20">Selamat Datang
+                    di
                     Portal PPID
                     Kabupaten Sumenep
                 </h1>
             </div>
+            <span class="absolute right-10 opacity-10 z-10"><img src="{{ asset('icon/sport.png') }}" alt=""></span>
         </div>
     </section>
 
+    {{-- Layanan Publik --}}
+    @php
+        use App\Models\AplikasiLayanan;
+        $aplikasi_layanan = AplikasiLayanan::where('is_active', 1)->get();
+    @endphp
     <section class="max-w-screen-xl mx-auto my-40 p-10 md:p-0">
         <div class="mx-auto">
             <div class="p-4">
                 <h1 class="font-bold text-2xl md:text-4xl my-10">Layanan Publik</h1>
                 <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-8">
-                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
-                        class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-chat-right-text w-24 h-24 mb-2"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                            <path
-                                d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
-                        </svg>
-                        <span class="text-center font-bold text-sm md:text-xl truncate">Lapor</span>
+                    @foreach ($aplikasi_layanan as $item)
+                        <a href="{{ $item->url }}" data-aos="fade-up" data-aos-once="true" duration="2000"
+                            target="_blank"
+                            class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
+                            <div class="w-24 h-24 mb-2">
+                                <img src="{{ asset('icon/apk.svg') }}" alt="">
+                            </div>
+                            <span
+                                class="text-center font-bold text-sm md:text-xl mt-3 truncate">{{ $item->nama_aplikasi }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Informasi --}}
+    {{-- <section class="w-full h-64 bg-red-700 my-40">
+        <div class="max-w-screen-xl mx-auto p-10 md:px-0 md:py-5">
+            <h1 class="text-white font-bold text-2xl mb-3">Permohonan Informasi</h1>
+            <div class="flex flex-shrink-0 overflow-x-auto gap-10 cursor-grab flex-nowrap no-scrollbar" id="scrollable">
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
                     </a>
-                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
-                        class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-hospital w-24 h-24 mb-2"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25z" />
-                            <path
-                                d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm2 14h2v-3H7zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm0-14H6v1h4zm2 7v7h3V8zm-8 7V8H1v7z" />
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
-                        <span class="text-center font-bold text-sm md:text-xl truncate">Klinik Hoax</span>
                     </a>
-                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
-                        class="flex flex-col justify-between items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" class="bi bi-people w-24 h-24 mb-2"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
-                        <span class="text-center font-bold text-sm md:text-xl truncate">Survey Kepuasan</span>
                     </a>
-                    <a href="#" data-aos="fade-up" data-aos-once="true" duration="2000"
-                        class="flex flex-col justify-center items-center w-full bg-red-700 text-white p-4 hover:scale-105 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-lightning w-24 h-24"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z" />
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
+                            acquisitions
+                            2021</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Here are the biggest enterprise
+                        technology
+                        acquisitions of
+                        2021 so far, in reverse chronological order.</p>
+                    <a href="javascript:void(0)"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+    {{-- galeri --}}
+    @php
+        use App\Models\Galeri;
+        $galeri = Galeri::where('is_active', 1)->orderByDesc('updated_at')->take(4)->get();
+    @endphp
+    <section class="max-w-screen-xl mx-auto my-40 p-10 md:p-0">
+        <div class="mx-auto">
+            <div class="p-4">
+                <div class="flex items-center justify-between">
+                    <h1 class="font-bold text-2xl md:text-4xl my-10">Galeri Foto</h1>
+                    <a href="javascript:void(0)" class="font-bold text-sm md:text-lg my-10 hover:underline">Lihat Gambar
+                        Lainnya
+                        -></a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    @foreach ($galeri as $galeri)
+                        @if ($galeri->count() == 0)
+                            <div class="flex items-center justify-center">
+                                <h1 class="text-center font-bold text-2xl md:text-4xl my-10">Tidak ada gambar</h1>
+                            </div>
+                        @else
+                            <div class="group relative overflow-hidden rounded-lg cursor-pointer">
+                                <div class="aspect-square overflow-hidden">
+                                    <img src="{{ asset('storage/' . $galeri->path_img) }}" alt="Nature"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    <span class="text-white font-bold text-xl text-center">{{ $galeri->title }}</span>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Berita --}}
+    <section class="w-full h-64 bg-red-700 my-40">
+        <div class="max-w-screen-xl mx-auto p-10 md:px-0 md:py-5">
+            <div class="flex items-center justify-between">
+                <h1 class="text-white font-bold text-2xl mb-3">Berita Terkini</h1>
+                <a href="https://sumenepkab.go.id/berita" target="_blank"
+                    class="text-white font-bold text-sm md:text-lg mb-3 hover:underline">Lihat Berita Lainnya -></a>
+            </div>
+            <div class="flex flex-shrink-0 overflow-x-auto gap-10 cursor-grab flex-nowrap no-scrollbar" id="scrollable">
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Gelar Penyuluhan Bela
+                            Negara Bagi Siswa SMA Negeri 1 Sapeken</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Gelar Penyuluhan Bela Negara Bagi
+                        Siswa
+                        SMA
+                        Negeri 1 Sapeken</p>
+                    <a href="https://sumenepkab.go.id/berita/baca/gelar-penyuluhan-bela-negara-bagi-siswa-sma-negeri-1-sapeken"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Menbud: Monumen Tugu
+                            Keris Berpotensi Dukung Perkembangan</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Media Center, Kamis ( 30/01 )
+                        Monumen
+                        Tugu Keris
+                        Arya Wiraraja sebagai salah satu pendorong ekonomi masyarakat, karena keberadaannya menjadi objek
+                        wisata</p>
+                    <a href="https://sumenepkab.go.id/berita/baca/menbud-monumen-tugu-keris-berpotensi-dukung-perkembangan-ekonomi-masyarakat"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Kasdim 0827/Sumenep:
+                            Penerimaan Prajurit TNI AD Gratis</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Media Center, Selasa (28/01) Dandim
+                        0827/Sumenep yang diwakili Kasdim Mayor Cba Ari Pamungkas Dian Buwono menjadi narasumber utama dalam
+                        podcast yang diselenggarakan oleh RRI Sumenep</p>
+                    <a href="https://sumenepkab.go.id/berita/baca/kasdim-0827sumenep-penerimaan-prajurit-tni-ad-gratis"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
+                    <a href="javascript:void(0)">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 select-none">Kemenag Sumenep Gelar
+                            Sosialisasi Gerakan Anti Kekerasan dan Bullying</h5>
+                    </a>
+                    <p class="select-none mb-3 font-normal text-gray-700 line-clamp-3">Media Center, Rabu (05/02) Sebagai
+                        upaya mencegah terjadinya kekerasan, Kementerian Agama Kabupaten Sumenep menggelar Sosialisasi
+                        Gerakan Anti Kekerasan dan Bullying sebagai implementasi Moderasi Beragama</p>
+                    <a href="https://sumenepkab.go.id/berita/baca/kemenag-sumenep-gelar-sosialisasi-gerakan-anti-kekerasan-dan-bullying"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
+                        Lihat Selengkapnya
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
                     </a>
                 </div>
@@ -66,182 +360,49 @@
         </div>
     </section>
 
-    <section class="w-full h-64 bg-red-700 my-40">
-        <div class="max-w-screen-xl mx-auto p-10 md:px-0 md:py-5">
-            <h1 class="text-white font-bold text-2xl mb-3">Permohonan Informasi</h1>
-            <div class="flex flex-shrink-0 overflow-x-auto gap-10 cursor-grab flex-nowrap no-scrollbar" id="scrollable">
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-sm shadow w-[288px] flex-shrink-0">
-                    <a href="javascript:void(0)">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 select-none">Noteworthy technology
-                            acquisitions
-                            2021</h5>
-                    </a>
-                    <p class="select-none mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
-                        acquisitions of
-                        2021 so far, in reverse chronological order.</p>
-                    <a href="javascript:void(0)"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-red-700 border-2 border-red-700 rounded-sm hover:bg-red-700 focus:ring-4 hover:text-white focus:outline-none focus:ring-red-300">
-                        Lihat Selengkapnya
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+    {{-- Infografis --}}
+    @php
+        use App\Models\Infografis;
+        use App\Models\DetailJenisInformasi;
+        $infografis = Infografis::all();
+        $detail_jenis_informasi = DetailJenisInformasi::all();
+    @endphp
+    <section class="max-w-screen-xl mx-auto p-6 md:p-8">
+        <h1 class="font-bold text-2xl mb-3">Infografis</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach ($infografis as $infografis)
+                @if ($infografis->is_active == true)
+                    <div
+                        class="relative bg-gradient-to-r from-red-600 to-red-800 rounded-xl shadow-2xl overflow-hidden hover:shadow-red-900/50 transition-all duration-300 hover:-translate-y-2">
+                        <div class="absolute top-2 right-2 opacity-20">
+                            <img src="{{ asset('icon/keris.png') }}" class="w-full" alt="Keris" />
+                        </div>
+                        <div class="p-6 relative">
+                            <h2 class="text-xl font-bold text-white mb-3 line-clamp-2">{{ $infografis->nama_infografis }}
+                            </h2>
+                            @if ($infografis->detailJenisInformasi)
+                                <p class="text-red-100 text-sm mb-4 line-clamp-3">
+                                    {{ $infografis->detailJenisInformasi->description }}
+                                </p>
+                            @endif
+                            <div class="flex items-center mb-3">
+                                <span class="text-red-200 text-xs">
+                                    📌 Post by: <span class="text-white">{{ $infografis->post_by }}</span>
+                                </span>
+                            </div>
+                            <a href="{{ route('infografis-file', $infografis->id) }}"
+                                class="inline-flex items-center text-white hover:text-red-200 text-sm">
+                                <span class="underline mr-2">Baca Selengkapnya</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </section>
 

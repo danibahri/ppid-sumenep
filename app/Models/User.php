@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements FilamentUser
 {
+
     use HasFactory, Notifiable, SoftDeletes; 
     protected $fillable = [
         'name',
@@ -21,6 +22,8 @@ class User extends Authenticatable implements FilamentUser
         'is_active',
         'role',
         'operator_ppid',
+        'no_whatsapp',
+        'path_surat_tugas',
     ];
 
     protected $hidden = [
