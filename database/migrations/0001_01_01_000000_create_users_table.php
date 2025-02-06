@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('perangkat_daerah')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->enum('role', ['admin', 'user', 'pembantu']);
             $table->string('operator_ppid')->nullable();
             $table->string('no_whatsapp')->nullable();
+            $table->string('path_surat_tugas')->nullable();
             $table->softDeletes(); 
             $table->timestamps();
         });

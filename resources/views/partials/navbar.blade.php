@@ -20,13 +20,13 @@
         <!-- Navbar Links -->
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul
-                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">
+                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white md:items-center">
                 <li>
                     <a href="{{ route('home') }}"
                         class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Beranda</a>
                 </li>
 
-                <!-- Profil Dropdown -->
+                <!-- Profil -->
                 <li class="relative group">
                     <a href="javascript:void(0)"
                         class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">
@@ -38,7 +38,6 @@
                             </svg>
                         </span>
                     </a>
-                    <!-- Dropdown Menu -->
                     <div id="dropdown"
                         class="absolute left-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
                         <ul class="py-2 text-sm text-gray-700">
@@ -66,23 +65,103 @@
                     </div>
                 </li>
 
-                <li>
-                    <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Pelayanan
-                        Informasi</a>
+                <!-- Pelayanan Informasi -->
+                <li class="relative group">
+                    <a href="javascript:void(0)"
+                        class="inline-block py-3 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">
+                        Pelayanan Informasi<span class="inline-block align-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-caret-down ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div id="dropdown"
+                        class="absolute left-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
+                        <ul class="py-2 text-sm text-gray-700">
+                            <li>
+                                <a href="{{ route('maklumat-pelayanan') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Maklumat
+                                    Pelayanan</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('prosedur-permintaan-informasi-ppid-sumenep') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Prosedur Permintaan Informasi</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('prosedur-pengajuan-keberatan-ppid-sumenep') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Prosedur Pengajuan Keberatan</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('prosedur-sengketa-informasi-ppid-sumenep') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100">Prosedur Sengketa Informasi</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                <li>
-                    <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Informasi
-                        Publik</a>
+
+                <!-- Informasi Publik -->
+                @php
+                    use App\Models\InformasiPublik;
+                    $informasi_publik = InformasiPublik::all();
+                @endphp
+                <li class="relative group">
+                    <a href="javascript:void(0)"
+                        class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">
+                        Informasi Publik<span class="inline-block align-middle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-caret-down ml-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div id="dropdown"
+                        class="absolute left-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
+                        <ul class="py-2 text-sm text-gray-700">
+                            @foreach ($informasi_publik as $item)
+                                @if ($item->is_active == true)
+                                    <li>
+                                        <a target="_blank" href="{{ route('informasi-publik-file', $item->id) }}"
+                                            class="block px-4 py-2 hover:bg-gray-100">{{ $item->nama_informasi }}</a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
+
+                <!-- Admin Pembantu -->
+                @if (Auth::check())
+                    <li class="relative group">
+                        <a href="javascript:void(0)"
+                            class="inline-block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">
+                            PPID Pembantu<span class="inline-block align-middle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-down ml-1" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div id="dropdown"
+                            class="absolute left-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li>
+                                    <a href="{{ route('informasi-publik') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a>
+                                    <a href="{{ route('infografis') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100">Infografis</a>
+                                    <a href="{{ route('aplikasi-layanan-publik') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100">Aplikasi Layanan Publik</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 <li>
-                    <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">PPID
-                        Membantu</a>
-                </li>
-                <li>
-                    <a href="#"
+                    <a href="{{ route('ppid-desa') }}"
                         class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">PPID
                         Desa</a>
                 </li>
@@ -96,7 +175,8 @@
                     </li>
                 @else
                     <li class="relative group">
-                        <button class="flex items-center space-x-1 text-gray-700 hover:text-red-700 focus:outline-none">
+                        <button
+                            class="flex items-center space-x-1 text-gray-700 hover:text-red-700 focus:outline-none">
                             <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -108,9 +188,8 @@
                         <div
                             class="absolute right-0 hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 z-10">
                             <div class="py-2 text-sm text-gray-700">
-                                <a href="" class="block px-4 py-2 hover:bg-gray-100">Profil</a>
+                                <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Profil</a>
                                 <a href="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-100">Logout</a>
-
                             </div>
                         </div>
                     </li>

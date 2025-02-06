@@ -33,13 +33,12 @@ class UserResource extends Resource
                     ->required()
                     ->placeholder('Masukkan nama lengkap / Username')
                     ->helperText('Nama yang akan digunakan untuk login')
-                    ->unique('users', 'name')
                     ->columnSpan(2),
                 TextInput::make('email')
                     ->label('Email')
                     ->required()
+                    ->helperText('Akun hanya bisa didaftarkan 1 kali dengan email yang sama')
                     ->email()
-                    ->unique('users', 'email')
                     ->placeholder('example@gmail.com'),
                 Select::make('role')
                     ->label('Permission')

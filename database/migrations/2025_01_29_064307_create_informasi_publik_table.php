@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama_informasi');
             $table->string('post_by');
             $table->string('icon')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->string('nama_dokumen')->nullable();
             $table->string('path_dokumen')->nullable();
             $table->string('url')->nullable();
